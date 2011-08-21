@@ -1,0 +1,8 @@
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Release\Interop.FXCore.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Release\fxcmAPI.csproj.ResolveComReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\bin\Release\fxcmAPI.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\bin\Release\fxcmAPI.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\bin\Release\Interop.FXCore.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Release\fxcmAPI.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Release\fxcmAPI.pdb
