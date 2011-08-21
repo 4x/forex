@@ -1,25 +1,42 @@
 import java.io.IOException;
 import java.util.*;
 import java.text.*;
-
+import java.util.ArrayList;
+import java.sql.*;
 public class Trade {
 	// practice account
 	//enter account and password
 	//change real to demon
-	private String account="3000018804";
-	private String password="Napoleon1";
-	public Trade(String instrument, String tradeType, int amount, String setSubscription){
-		try {
-			tradeType=tradeType.charAt(0)+"";
-			instrument=instrument.substring(0, 3)+"/"+instrument.substring(3);
-			String command = "fxcmAPI_Real "+account+" "+password+" "+instrument+" "+tradeType+" "+amount+" "+setSubscription;
-			Process child = Runtime.getRuntime().exec(command);
-			DateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			Date date=new Date();
-
-			System.out.println(instrument+" "+tradeType+" "+amount+" "+dateFormat.format(date));
-		} catch (IOException e) {
-		}
+	public Trade(String instrument, String tradeType, int amount, String setSubscription, String pl){
+		connectDatabase();
+		try{
+            Statement statement = connection.createStatement();
+			
+            String sql="insert into record (instrument,type,amount,pl) values('"+instrument+"','"+tradeType+"',"+amount+","+pl+")";
+			
+            statement.execute(sql);
+            statement.close();
+            
+        }catch(Exception e){
+            System.out.print(e);
+        }
 	}
+	Connection connection=null;
+
+	public void connectDatabase(){
+        String userName="zjin";
+        String userPasswd="spq0bmioa";
+        String dbName="forex";
+        String url="jdbc:mysql://cloud.cutediy.com/"+dbName+"?user="+userName+"&password="+userPasswd;
+		
+        try{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			connection=DriverManager.getConnection(url);
+			
+        }catch(Exception e){
+            System.out.print(e);
+        }
+
+    }
 
 }

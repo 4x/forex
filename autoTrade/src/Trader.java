@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.awt.AWTException;
-import java.awt.Robot;
 import java.io.*;
 
 
@@ -8,7 +6,7 @@ public class Trader implements Serializable {
 	static ArrayList<TradeRecord> openPositions=new ArrayList<TradeRecord>();
 	static ArrayList<String> fxList=new ArrayList<String>();
 	static ArrayList<String> alerts=new ArrayList<String>();
-	static int amount=5;
+	static int amount=50;
 
 	public static void main(String [] arg){
 		
@@ -17,12 +15,9 @@ public class Trader implements Serializable {
 		while(true){
 			check();
 
-			Robot rob;
 			try {
-				rob = new Robot();
-				rob.delay(10000);
-
-			}catch (AWTException e) {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -75,7 +70,27 @@ public class Trader implements Serializable {
 	public static void check(){
 		try{
 			dataFile df=refresh();
-
+			
+			
+			int SS=df.getSize("Signal");
+			ArrayList<String[]> TT =new ArrayList<String[]>();
+			for(int i=0;i<SS;i++){
+				if(df.getValue("Signal", "shortname", i).equals("Breakout2")){
+					String[] aa={df.getValue("Signal", "symbol", i),df.getValue("Signal", "estPnl", i)};
+					TT.add(aa);
+				}
+			}
+			for(TradeRecord t:openPositions){
+				for(int i=0; i<TT.size(); i++){
+					String[] aa=TT.get(i);
+					if(t.signal.equals(aa[0])){
+						t.pl=aa[1];
+					}
+				}
+			}
+			
+			
+			
 			checkBuy(df);
 
 			checkSell(df);
@@ -99,21 +114,21 @@ public class Trader implements Serializable {
 		// TODO Auto-generated method stub
 		for(int i=0; i<openPositions.size(); i++){
 			if(!fxList.contains(openPositions.get(i).signal)){
-				sellAll(openPositions.get(i).signal, openPositions.get(i).direction, openPositions.get(i).amount, i);
+				sellAll(openPositions.get(i).signal, openPositions.get(i).direction, openPositions.get(i).amount, i, openPositions.get(i).pl);
 				i--;
 			}
 		}
 		
 	}
 
-	private static void sellAll(String signal, String direction, int amount, int i) {
+	private static void sellAll(String signal, String direction, int amount, int i, String pl) {
 		// TODO Auto-generated method stub
 		if(direction.equals("Buy")){
 			direction="Sell";
 		}else{
 			direction="Buy";
 		}
-		new Trade(signal, direction, amount, "D");
+		new Trade(signal, direction, amount, "D", pl);
 		openPositions.remove(i);
 		writeFile();
 	}
@@ -137,7 +152,7 @@ public class Trader implements Serializable {
 					int s=openPositions.size();
 					for(int j=0; j<s; j++){
 						if(openPositions.get(j).signal.equals(signal)){
-							closePosition(signal, openPositions.get(j).direction);
+							closePosition(signal, openPositions.get(j).direction, openPositions.get(j).pl);
 							alerts.add(message);
 							if(alerts.size()>20){
 								alerts.remove(alerts.size()-1);
@@ -154,13 +169,13 @@ public class Trader implements Serializable {
 	}
 
 	public static void openPosition(String signal, String direction){
-		new Trade(signal, direction, amount, "E");
-		openPositions.add(new TradeRecord(signal, direction, amount));
+		new Trade(signal, direction, amount, "E", "0.0");
+		openPositions.add(new TradeRecord(signal, direction, amount, "0.0"));
 //		fxList.add(signal);
 		writeFile();
 	}
 
-	public static void closePosition(String signal, String direction){
+	public static void closePosition(String signal, String direction, String pl){
 		if(direction.equals("Buy")){
 			direction="Sell";
 		}else{
@@ -179,9 +194,9 @@ public class Trader implements Serializable {
 			}
 		}
 		if(isClosed){
-			new Trade(signal, direction, amount/5, "D");
+			new Trade(signal, direction, amount/5, "D", pl);
 		}else{
-			new Trade(signal, direction, amount/5, "N");
+			new Trade(signal, direction, amount/5, "N", pl);
 		}
 		writeFile();
 	}
