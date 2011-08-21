@@ -1,8 +1,8 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <StartArguments>FX1040512001 2225 EUR/JPY B 20</StartArguments>
+    <StartArguments>FX1040512001 2225 EUR/USD B 20 D</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <StartArguments>FX1040512001 2225</StartArguments>
+    <StartArguments>FX1040512001 2225 GBP/CHF 10 U</StartArguments>
   </PropertyGroup>
 </Project>

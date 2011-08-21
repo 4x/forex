@@ -113,7 +113,7 @@ public class Trader implements Serializable {
 		}else{
 			direction="Buy";
 		}
-		new Trade(signal, direction, amount);
+		new Trade(signal, direction, amount, "D");
 		openPositions.remove(i);
 		writeFile();
 	}
@@ -154,7 +154,7 @@ public class Trader implements Serializable {
 	}
 
 	public static void openPosition(String signal, String direction){
-		new Trade(signal, direction, amount);
+		new Trade(signal, direction, amount, "E");
 		openPositions.add(new TradeRecord(signal, direction, amount));
 //		fxList.add(signal);
 		writeFile();
@@ -166,17 +166,22 @@ public class Trader implements Serializable {
 		}else{
 			direction="Buy";
 		}
-		new Trade(signal, direction, amount/5);
 		int size=openPositions.size();
+		boolean isClosed=false;
 		for(int i=0; i<size; i++){
 			if(openPositions.get(i).signal.equals(signal)){
 				openPositions.get(i).amount-=amount/5;
 				if(openPositions.get(i).amount==0){
 					openPositions.remove(i);
-//					fxList.remove(openPositions.get(i).signal);
+					isClosed=true;
 					i--;
 				}
 			}
+		}
+		if(isClosed){
+			new Trade(signal, direction, amount/5, "D");
+		}else{
+			new Trade(signal, direction, amount/5, "N");
 		}
 		writeFile();
 	}

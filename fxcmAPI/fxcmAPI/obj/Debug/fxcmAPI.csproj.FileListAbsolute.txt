@@ -6,3 +6,11 @@ C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects
 C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Debug\fxcmAPI.csproj.ResolveComReference.cache
 C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Debug\fxcmAPI.exe
 C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\fxcmAPI\fxcmAPI\obj\Debug\fxcmAPI.pdb
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\obj\Debug\Interop.FXCore.dll
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\obj\Debug\fxcmAPI.csproj.ResolveComReference.cache
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\obj\Debug\fxcmAPI.exe
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\obj\Debug\fxcmAPI.pdb
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\bin\Debug\fxcmAPI.exe
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\bin\Debug\fxcmAPI.pdb
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\bin\Debug\Interop.FXCore.dll
+C:\Documents and Settings\Administrator\桌面\fxcmAPI\fxcmAPI\obj\Debug\ResolveAssemblyReference.cache
